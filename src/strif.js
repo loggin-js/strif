@@ -91,6 +91,11 @@ class StrifTemplate {
 }
 
 class Strif {
+  /**
+   * @param {object} opts 
+   * @param {object} opts.transformers
+   * @param {string[]} opts.plugins
+   */
   constructor(opts = {}) {
     this.opts = opts;
 
@@ -122,8 +127,9 @@ class Strif {
 
   /**
    * @param {string} path 
+   * @param {object} options 
    */
-  fromFile(path) {
+  fromFile(path, options) {
     if (!path) {
       throw new Error(
         'path is required');
@@ -133,26 +139,29 @@ class Strif {
     }
 
     let template = fs.readFileSync(path).toString();
-    return new StrifTemplate(template, this.transformers);
+    return new StrifTemplate(template, this.transformers, options);
   }
 }
 Strif.DEFAULT_TRANSFORMERS = {};
 
-let strif = {
-  Strif,
+const DEFAULT_FORMATTER_OPTS = {
+  transformers: {
+    date: s => new Date(s),
+    lds: d => d.toLocaleString()
+  }
+};
 
-  /**
-   * 
-   * @param {object} opts 
-   * @param {object} opts.transformers
-   * @returns {Strif}
-   */
-  create(opts) {
-    return new Strif(opts);
-  },
-}
+let strif = new Strif(DEFAULT_FORMATTER_OPTS);
+strif.Strif = Strif;
+
+/**
+ * 
+ * @param {object} opts 
+ * @param {object} opts.transformers
+ * @returns {Strif}
+ */
+strif.create = (opts) => {
+  return new Strif(opts);
+};
 
 module.exports = strif;
-
-
-

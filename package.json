@@ -1,7 +1,7 @@
 {
   "name": "strif",
   "version": "1.0.0",
-  "description": "Format strings",
+  "description": "String formating done right",
   "main": "src/strif.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

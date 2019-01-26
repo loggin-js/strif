@@ -1,13 +1,13 @@
 
 // Second idea
-const strif2 = require('../src/strif');
+const strif = require('../src/strif');
 let data = {
   time: 11223322,
   message: 'This is a super long message ',
   user: { name: 'Bob' }
 }
 
-const formatter2 = strif2.create({
+const formatter2 = strif.create({
   transformers: {
     date: s => new Date(s),
     lds: d => d.toLocaleString()
