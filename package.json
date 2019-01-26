@@ -1,11 +1,24 @@
 {
   "name": "strif",
   "version": "1.0.0",
-  "description": "String formating done right",
+  "description": "Format strings easily",
   "main": "src/strif.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "nombrekeff",
-  "license": "ISC"
+  "repository": {
+    "type": "vcs",
+    "url": "https://github.com/nombrekeff/strif"
+  },
+  "author": {
+    "name": "Manolo Edge",
+    "email": "manoloedge96@gmail.com"
+  },
+  "license": "ISC",
+  "keywords": [
+    "formatting",
+    "formatter",
+    "string formatter",
+    "strings"
+  ]
 }
