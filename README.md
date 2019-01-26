@@ -13,7 +13,7 @@ Format strings easily
 - [Installation](#installation)
 - [Importing](#importing)
 - [Usage](#usage)
-- [Documentation](#documentation)
+- [Api](#api)
   - [strif](#strif)
     - [strif.Formatter](#strifformatter)
     - [strif.Template](#striftemplate)
@@ -82,9 +82,9 @@ template.compile(data);
 ```
 
 
-## Documentation
+## Api
 ### strif
-This is are the exported values from `strif`.
+Exported members from `strif`.
 ```ts
 interface strif {
   create(opts: strif.StrifOptions): void;
