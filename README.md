@@ -179,3 +179,6 @@ If you found a **bug** or have a **feature request** please dont hesitate on lea
 
 ## Contributing
 If you would like to collaborate please check [CONTRIBUTING.md](./CONTRIBUTING.md) for more details.
+
+## Considerations <!-- omit in toc -->
+This project was in some way inspired by [@davidchambers/string-format](https://github.com/davidchambers/string-format#formatcreatetransformers), at least in the sense of the transformers concept.
