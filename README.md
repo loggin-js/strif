@@ -92,7 +92,7 @@ Using **strif** is actually pretty easy, you can use the default formatter under
 let template = strif.template('{time} {user} {message}');
 template.compile(data);
 ```
-or create a custom one by using `strif.create(opts)`, you can pass a set of transformers and other [options]()
+or create a custom one by using `strif.create(opts)`, you can pass a set of transformers and other [options](#strifformatteroptions)
 ```js
 const formatter = strif.create({
   transformers: {
