@@ -1,5 +1,5 @@
 # strif  <!-- omit in toc -->
-Format strings easily
+Format strings easily 
 
 ## Features <!-- omit in toc -->
 * ✔︎ Simple
