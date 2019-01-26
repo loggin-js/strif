@@ -35,22 +35,6 @@ Format strings easily
 * ✔︎ No Dependencies
 
 
-## Table Of Content <!-- omit in toc -->
-- [Overview](#overview)
-- [Installation](#installation)
-- [Importing](#importing)
-- [Usage](#usage)
-- [Api](#api)
-  - [strif](#strif)
-    - [strif.Formatter](#strifformatter)
-    - [strif.Template](#striftemplate)
-    - [strif.Prop](#strifprop)
-    - [strif.PropOptions](#strifpropoptions)
-    - [strif.TemplateOptions](#striftemplateoptions)
-    - [strif.FormatterOptions](#strifformatteroptions)
-- [Found a bug or have a feature request](#found-a-bug-or-have-a-feature-request)
-- [Contributing](#contributing)
-
 ## Overview
 ```js
 const formatter = strif.create({
@@ -73,6 +57,22 @@ const template =
 console.log(template.compile(data));
 // will output: <%b1970-1-1 04:07:03> <%grBob> This is a super long message
 ```
+
+## Table Of Content <!-- omit in toc -->
+- [Overview](#overview)
+- [Installation](#installation)
+- [Importing](#importing)
+- [Usage](#usage)
+- [Api](#api)
+  - [strif](#strif)
+    - [strif.Formatter](#strifformatter)
+    - [strif.Template](#striftemplate)
+    - [strif.Prop](#strifprop)
+    - [strif.PropOptions](#strifpropoptions)
+    - [strif.TemplateOptions](#striftemplateoptions)
+    - [strif.FormatterOptions](#strifformatteroptions)
+- [Found a bug or have a feature request](#found-a-bug-or-have-a-feature-request)
+- [Contributing](#contributing)
 
 ## Installation
 Install from npm:
