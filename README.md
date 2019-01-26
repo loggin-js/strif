@@ -18,9 +18,9 @@ Format strings easily
     - [strif.Formatter](#strifformatter)
     - [strif.Template](#striftemplate)
     - [strif.Prop](#strifprop)
-  - [PropOptions](#propoptions)
-  - [TemplateOptions](#templateoptions)
-  - [FormatterOptions](#formatteroptions)
+    - [strif.PropOptions](#strifpropoptions)
+    - [strif.TemplateOptions](#striftemplateoptions)
+    - [strif.FormatterOptions](#strifformatteroptions)
 - [Found a bug or have a feature request](#found-a-bug-or-have-a-feature-request)
 - [Contributing](#contributing)
 
@@ -94,7 +94,7 @@ interface strif {
 
 #### strif.Formatter
 ```ts
-interface Formatter {
+interface strif.Formatter {
   constructor(opts: strif.FormatterOptions);
   template(template: string, options: strif.TemplateOptions): strif.Template;
   fromFile(path: string, options: strif.TemplateOptions): strif.Template;
@@ -103,7 +103,7 @@ interface Formatter {
 
 #### strif.Template
 ```ts
-interface Template {
+interface strif.Template {
   constructor(template: string, transformers: { [key: string]: (v) => v }, options: strif.TemplateOptions);
   prop(name: string, options: strif.PropOptions): this;
   print(): void;
@@ -113,35 +113,32 @@ interface Template {
 
 #### strif.Prop
 ```ts
-interface Prop {
+interface strif.Prop {
   constructor(name, opts: strif.PropOptions);
   getFromObject(obj: object): any;
 }
 ```
 
-### PropOptions
+#### strif.PropOptions
 ```ts
-interface PropOptions {
+interface strif.PropOptions {
   accessor: string;
   type: string;
   transformers: string[];
 }
 ```
 
-### TemplateOptions
+#### strif.TemplateOptions
 ```ts
-interface TemplateOptions {
+interface strif.TemplateOptions {
   props: strif.StrifProp[];
 }
 ```
 
-### FormatterOptions
+#### strif.FormatterOptions
 ```ts
-interface FormatterOptions {
-  // Set of transformer functions
+interface strif.FormatterOptions {
   transformers: { [key: string]: (v) => v };
-
-  // Plugins path
   plugins: string[]; 
 }
 ```
