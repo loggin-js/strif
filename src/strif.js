@@ -90,7 +90,7 @@ class StrifTemplate {
   }
 }
 
-class Strif {
+class StrifFormatter {
   /**
    * @param {object} opts 
    * @param {object} opts.transformers
@@ -151,17 +151,17 @@ const DEFAULT_FORMATTER_OPTS = {
   }
 };
 
-let strif = new Strif(DEFAULT_FORMATTER_OPTS);
+let strif = new StrifFormatter(DEFAULT_FORMATTER_OPTS);
 strif.Strif = Strif;
 
 /**
  * 
  * @param {object} opts 
  * @param {object} opts.transformers
- * @returns {Strif}
+ * @returns {StrifFormatter}
  */
 strif.create = (opts) => {
-  return new Strif(opts);
+  return new StrifFormatter(opts);
 };
 
 module.exports = strif;

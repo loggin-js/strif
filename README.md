@@ -15,12 +15,12 @@ Format strings easily
 - [Usage](#usage)
 - [Documentation](#documentation)
   - [strif](#strif)
-    - [strif.Strif](#strifstrif)
-    - [strif.StrifTemplate](#strifstriftemplate)
-    - [strif.StrifProp](#strifstrifprop)
+    - [strif.Formatter](#strifformatter)
+    - [strif.Template](#striftemplate)
+    - [strif.Prop](#strifprop)
   - [PropOptions](#propoptions)
   - [TemplateOptions](#templateoptions)
-  - [StrifOptions](#strifoptions)
+  - [FormatterOptions](#formatteroptions)
 - [Found a bug or have a feature request](#found-a-bug-or-have-a-feature-request)
 - [Contributing](#contributing)
 
@@ -83,38 +83,38 @@ template.compile(data);
 
 
 ## Documentation
-
 ### strif
+This is are the exported values from `strif`.
 ```ts
 interface strif {
-  create(opts: StrifOptions): void;
-  Strif: Strif;
+  create(opts: strif.StrifOptions): void;
+  Formatter: strif.Formatter;
 }
 ```
 
-#### strif.Strif
+#### strif.Formatter
 ```ts
-interface Strif {
-  constructor(opts: StrifOptions);
-  template(template: string, options: TemplateOptions): StrifTemplate;
-  fromFile(path: string, options: TemplateOptions): StrifTemplate;
+interface Formatter {
+  constructor(opts: strif.FormatterOptions);
+  template(template: string, options: strif.TemplateOptions): strif.Template;
+  fromFile(path: string, options: strif.TemplateOptions): strif.Template;
 }
 ```
 
-#### strif.StrifTemplate
+#### strif.Template
 ```ts
-interface StrifTemplate {
-  constructor(template: string, transformers: { [key: string]: (v) => v }, options: TemplateOptions);
-  prop(name: string, options: PropOptions): this;
+interface Template {
+  constructor(template: string, transformers: { [key: string]: (v) => v }, options: strif.TemplateOptions);
+  prop(name: string, options: strif.PropOptions): this;
   print(): void;
   compile(data: object): string;
 }
 ```
 
-#### strif.StrifProp
+#### strif.Prop
 ```ts
-interface StrifProp {
-  constructor(name, opts: PropOptions);
+interface Prop {
+  constructor(name, opts: strif.PropOptions);
   getFromObject(obj: object): any;
 }
 ```
@@ -131,13 +131,13 @@ interface PropOptions {
 ### TemplateOptions
 ```ts
 interface TemplateOptions {
-  props: StrifProp[];
+  props: strif.StrifProp[];
 }
 ```
 
-### StrifOptions
+### FormatterOptions
 ```ts
-interface StrifOptions {
+interface FormatterOptions {
   // Set of transformer functions
   transformers: { [key: string]: (v) => v };
 
