@@ -1,0 +1,11 @@
+{
+  "name": "strif",
+  "version": "1.0.0",
+  "description": "Format strings",
+  "main": "src/strif.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nombrekeff",
+  "license": "ISC"
+}
