@@ -105,7 +105,11 @@ let template = formatter
   .template('{time} {user} {message}')
   .prop('time', { transformers: [`date`] });
 
-template.compile(data);
+template.compile({
+  time: 11223322,
+  message: 'This is a super long message ',
+  user: { name: 'Bob' }
+});
 ```
 
 
