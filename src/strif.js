@@ -100,7 +100,7 @@ class StrifFormatter {
     this.opts = opts;
 
     this.transformers = {
-      ...Strif.DEFAULT_TRANSFORMERS,
+      ...StrifFormatter.DEFAULT_TRANSFORMERS,
       ...this.opts.transformers
     };
 
@@ -142,7 +142,7 @@ class StrifFormatter {
     return new StrifTemplate(template, this.transformers, options);
   }
 }
-Strif.DEFAULT_TRANSFORMERS = {};
+StrifFormatter.DEFAULT_TRANSFORMERS = {};
 
 const DEFAULT_FORMATTER_OPTS = {
   transformers: {
@@ -152,7 +152,9 @@ const DEFAULT_FORMATTER_OPTS = {
 };
 
 let strif = new StrifFormatter(DEFAULT_FORMATTER_OPTS);
-strif.Strif = Strif;
+strif.Formatter = StrifFormatter;
+strif.Template = StrifTemplate;
+strif.Var = StrifVar;
 
 /**
  * 

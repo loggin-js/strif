@@ -28,7 +28,7 @@ console.log(template.compile(data));
 
 const template2 =
   formatter2
-    .fromFile('./.tests/template.ejs')
+    .fromFile('./.tests/template.js')
     .prop('name');
 
 template2.print();
