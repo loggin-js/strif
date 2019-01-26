@@ -1,4 +1,31 @@
-# strif  <!-- omit in toc -->
+
+
+
+<!-- Links -->
+[npm-image]: https://img.shields.io/npm/v/strif.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/strif
+
+[code-quality-badge]: http://npm.packagequality.com/shield/strif.svg?style=flat-square
+[code-quality-link]: https://packagequality.com/#?package=strif
+
+[downloads-badge]: https://img.shields.io/npm/dm/strif.svg?style=flat-square
+[downloads-link]: https://www.npmjs.com/package/strif
+
+[dependencies-badge]: https://img.shields.io/david/nombrekeff/strif.svg?style=flat-square
+[dependencies-link]: https://david-dm.org/nombrekeff/strif?view=tree
+
+[vulnerabilities-badge]: https://snyk.io/test/npm/strif/badge.svg?style=flat-square
+[vulnerabilities-link]: https://snyk.io/test/npm/strif
+
+# :card_index: strif <!-- omit in toc -->
+
+[![NPM version][npm-image]][npm-url]
+[![Downloads][downloads-badge]][downloads-link]
+[![](https://img.shields.io/bundlephobia/min/strif.svg?style=flat-square)]()  
+[![Dependencies][dependencies-badge]][dependencies-link]
+[![Known Vulnerabilities][vulnerabilities-badge]][vulnerabilities-link]
+[![NPM quality][code-quality-badge]][code-quality-link]
+
 Format strings easily 
 
 ## Features <!-- omit in toc -->
