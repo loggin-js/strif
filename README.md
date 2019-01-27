@@ -128,6 +128,7 @@ Using **strif** in the browser is as simple as in node, just import the script `
   </body>
 </html>
 ```
+> ! NOTICE: Plugins currently don't work in browser, woking on it. PRs Welcome
 
 
 ## Api
