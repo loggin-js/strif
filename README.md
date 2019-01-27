@@ -40,7 +40,7 @@ Format strings easily
 const formatter = strif.create({
   transformers: {
     date: s => new Date(s),
-    lds: d => d.toLocaleString()
+    lds:  d => d.toLocaleString()
   },
   plugins: [
     '.tests/plugins/strif-color.js'
@@ -205,8 +205,8 @@ interface strif.FormatterOptions {
 ```
 
 ### Transformers
-Transformers are functions that are be used to process some segment of the template, they will receive a value **string** and they must also return a value.  
-Here are some example:
+Transformers are **functions** that are be used to process some segment of the template,  
+they will **receive a value** and they **must** also **return a value**, here are some example:
 ```js
 {
   transformers: {
