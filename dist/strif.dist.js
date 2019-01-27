@@ -568,9 +568,9 @@ class StrifTemplate {
       if (prop.transformers) {
         map[prop.name] = prop.transformers
           .reduce((prev, curr) => {
-            if (!this._transformers[curr])
+            if (!this._transformers[curr]) {
               throw new Error('Transformer not found: ' + curr);
-            else return this._transformers[curr](prev);
+            } else return this._transformers[curr](prev);
           }, map[prop.name]);
       }
     }
