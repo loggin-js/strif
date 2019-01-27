@@ -85,20 +85,21 @@ $ npm install strif
 ```
 
 ## Importing
-Using require: 
+With require: 
 ```js
 const strif = require('strif');
 ```
 
-Using ES6 import:
+With ES6 import:
 ```js
 import strif from 'strif';
 ```
 
-Using in browser:
+In the browser:
 ```html
 <script src="node_modules/strif/dist/strif.dist.js"></script>
 ```
+> ! NOTICE: Plugins currently don't work in browser, woking on it. PRs Welcome
 
 ## Usage
 ### Using in Node
