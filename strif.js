@@ -166,4 +166,5 @@ strif.create = (opts) => {
   return new StrifFormatter(opts);
 };
 
+global.strif = strif;
 module.exports = strif;

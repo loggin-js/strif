@@ -1,6 +1,6 @@
 
 // Second idea
-const strif = require('../src/strif');
+const strif = require('..');
 let data = {
   time: 11223322,
   message: 'This is a super long message ',

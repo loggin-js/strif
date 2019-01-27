@@ -2,9 +2,10 @@
   "name": "strif",
   "version": "1.0.1",
   "description": "Format strings easily",
-  "main": "src/strif.js",
+  "main": "strif.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "browserify strif.js -o dist/strif.dist.js"
   },
   "repository": {
     "type": "vcs",
@@ -20,5 +21,8 @@
     "formatter",
     "string formatter",
     "strings"
-  ]
+  ],
+  "devDependencies": {
+    "browserify": "^16.2.3"
+  }
 }

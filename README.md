@@ -63,6 +63,8 @@ console.log(template.compile(data));
 - [Installation](#installation)
 - [Importing](#importing)
 - [Usage](#usage)
+  - [Using in Node](#using-in-node)
+  - [Using in Browser](#using-in-browser)
 - [Api](#api)
   - [strif](#strif)
     - [strif.Formatter](#strifformatter)
@@ -87,6 +89,7 @@ import strif from 'strif';
 ```
 
 ## Usage
+### Using in Node
 Using **strif** is actually pretty easy, you can use the default formatter under **strif**
 ```js
 let template = strif.template('{time} {user} {message}');
@@ -110,6 +113,20 @@ template.compile({
   message: 'This is a super long message ',
   user: { name: 'Bob' }
 });
+```
+### Using in Browser
+Using **strif** in the browser is as simple as in node, just import the script `strif/dist/strif.dist.js`
+```html
+<html lang="en">
+  <head>
+    <script src="node_modules/strif/dist/strif.dist.js"></script>
+  </head>
+  <body>
+    <script>
+      strif.create(); // strif is available
+    </script>
+  </body>
+</html>
 ```
 
 
