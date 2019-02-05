@@ -169,7 +169,7 @@ interface strif.Template {
   constructor(template: string, transformers: { [key: string]: (v) => v }, options: strif.TemplateOptions);
   prop(name: string, options: strif.PropOptions): this;
   print(): void;
-  compile(data: object): string;
+  compile(data: object, options: { ignoreTransformers: string[] }): string;
 }
 ```
 
