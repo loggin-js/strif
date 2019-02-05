@@ -65,16 +65,41 @@ class StrifTemplate {
     return this;
   }
 
-  compile(data) {
+  /**
+   * 
+   * @param {any} data 
+   * @param {StrifTemplate.DefaultCompileOptions} options 
+   */
+  compile(data, options = {}) {
+    options = {
+      ...StrifTemplate.DefaultCompileOptions,
+      ...options
+    }
+
+    let transformers = this._transformers;
+    if (options.ignoreTransformers) {
+      transformers = {};
+      Object.keys(this._transformers).forEach(key => {
+        transformers[key] = this._transformers[key];
+        if (options.ignoreTransformers.includes(key)) {
+          transformers[key].ignore = true;
+        }
+      });
+    }
+
     let map = {};
     for (let prop of this._props) {
       map[prop.name] = prop.getFromObject(data);
       if (prop.transformers) {
         map[prop.name] = prop.transformers
           .reduce((prev, curr) => {
-            if (!this._transformers[curr]) {
+            if (!transformers[curr]) {
               throw new Error('Transformer not found: ' + curr);
-            } else return this._transformers[curr](prev);
+            } else if (transformers[curr].ignore) {
+              return prev;
+            } else {
+              return transformers[curr](prev);
+            }
           }, map[prop.name]);
       }
     }
@@ -89,6 +114,10 @@ class StrifTemplate {
         });
   }
 }
+
+StrifTemplate.DefaultCompileOptions = {
+  ignoreTransformers: null
+};
 
 class StrifFormatter {
   /**
