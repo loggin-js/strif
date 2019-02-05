@@ -19,8 +19,8 @@ class StrifVar {
   getFromObject(obj) {
     let str = this.accessor.replace(/\[(\w+)\]/g, '.$1').replace(/^\./, '');
     for (let k of str.split('.')) {
-      if (k in obj) obj = obj[k];
-      else return;
+      if (k in obj) obj = obj[k] || null;
+      else return null;
     }
 
     if (this.opts.type && !(typeof obj === this.opts.type)) {
@@ -89,7 +89,10 @@ class StrifTemplate {
 
     let map = {};
     for (let prop of this._props) {
-      map[prop.name] = prop.getFromObject(data);
+      let propData = prop.getFromObject(data);
+      if (propData) {
+        map[prop.name] = propData;
+      }
       if (prop.transformers) {
         map[prop.name] = prop.transformers
           .reduce((prev, curr) => {
@@ -108,7 +111,9 @@ class StrifTemplate {
       .replace(
         /([{}])\1|[{](.*?)(?:!(.+?))?[}]/g,
         (m, l, key) => {
-          if (key) return map[key];
+          let val = map[key];
+          if (!val || val == null || val == undefined) return '';
+          if (key) return map[key] || '';
           else throw new Error(
             'Template placeholders ({}) should not be empty');
         });
