@@ -4,8 +4,9 @@
   "description": "Format strings easily",
   "main": "strif.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dist": "browserify strif.js -o dist/strif.dist.js"
+    "dist": "browserify strif.js -o dist/strif.dist.js",
+    "test": "jest",
+    "test:w": "jest --watchAll"
   },
   "repository": {
     "type": "vcs",
@@ -23,6 +24,7 @@
     "strings"
   ],
   "devDependencies": {
-    "browserify": "^16.2.3"
+    "browserify": "^16.2.3",
+    "jest": "^24.1.0"
   }
 }

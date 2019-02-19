@@ -49,13 +49,17 @@ const formatter = strif.create({
 
 const template =
   formatter
-    .template('{time} {user} {message}')
-    .prop('time', { transformers: [`date`, `lds`, `blue`] })
-    .prop('user', { accessor: 'user.name', transformers: [`gray`] })
+    .template('{time} {user} {message}', {
+      props: {
+        time: { transformers: [`date`, `lds`, `blue`]                        },
+        user: { transformers: [`gray`],               accessor: 'user.name'  },
+      }
+    })
     .prop('message', { type: 'string' });
 
 console.log(template.compile(data));
-// will output: <%b1970-1-1 04:07:03> <%grBob> This is a super long message
+
+strif.compile('$1 World!', ['Hello']);
 ```
 
 ## Table Of Content <!-- omit in toc -->
@@ -107,6 +111,8 @@ Using **strif** is actually pretty easy, you can use the default formatter under
 ```js
 let template = strif.template('{time} {user} {message}');
 template.compile(data);
+// Or
+strif.compile('{time} {user} {message}', data);
 ```
 or create a custom one by using `strif.create(opts)`, you can pass a set of [transformers](#transformers) and [plugins](#plugins) and other [options](#strifformatteroptions)
 ```js

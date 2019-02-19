@@ -33,11 +33,9 @@ class StrifVar {
 class StrifTemplate {
   constructor(template, transformers, options = {}) {
     if (!template) {
-      throw new Error(
-        'template is required');
+      throw new Error('template is required');
     } else if (typeof template != 'string') {
-      throw new Error(
-        'template is required to be a string');
+      throw new Error('template is required to be a string');
     } else {
       this.template = template;
     }
@@ -53,23 +51,11 @@ class StrifTemplate {
     }
   }
 
-  print() {
-    console.log(this.template);
-  }
-
   prop(name, opts = {}) {
-    this._props.push(
-      new StrifVar(name, opts)
-    );
-
+    this._props.push(new StrifVar(name, opts));
     return this;
   }
 
-  /**
-   * 
-   * @param {any} data 
-   * @param {StrifTemplate.DefaultCompileOptions} options 
-   */
   compile(data, options = {}) {
     options = {
       ...StrifTemplate.DefaultCompileOptions,
@@ -87,7 +73,7 @@ class StrifTemplate {
       });
     }
 
-    let map = {};
+    let map = data;
     for (let prop of this._props) {
       let propData = prop.getFromObject(data);
       if (propData) {
@@ -107,16 +93,18 @@ class StrifTemplate {
       }
     }
 
-    return this.template
-      .replace(
-        /([{}])\1|[{](.*?)(?:!(.+?))?[}]/g,
-        (m, l, key) => {
-          let val = map[key];
-          if (!val || val == null || val == undefined) return '';
-          if (key) return map[key] || '';
-          else throw new Error(
-            'Template placeholders ({}) should not be empty');
-        });
+    return StrifTemplate.compile(this.template, map, options);
+  }
+
+  static compile(template, data, options) {
+    return template.replace(
+      /([{}])\1|[{](.*?)(?:!(.+?))?[}]/g,
+      (m, l, key) => {
+        if (key) {
+          let val = data[key] || '';
+          return val;
+        } else return data;
+      });
   }
 }
 
@@ -190,15 +178,9 @@ strif.Formatter = StrifFormatter;
 strif.Template = StrifTemplate;
 strif.Var = StrifVar;
 
-/**
- * 
- * @param {object} opts 
- * @param {object} opts.transformers
- * @returns {StrifFormatter}
- */
-strif.create = (opts) => {
-  return new StrifFormatter(opts);
-};
+strif.create = (opts) => new StrifFormatter(opts);
+strif.compile = StrifTemplate.compile;
+
 
 global.strif = strif;
 module.exports = strif;
