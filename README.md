@@ -58,8 +58,6 @@ const template =
     .prop('message', { type: 'string' });
 
 console.log(template.compile(data));
-
-strif.compile('$1 World!', ['Hello']);
 ```
 
 ## Table Of Content <!-- omit in toc -->

@@ -96,6 +96,7 @@ class StrifTemplate {
     return StrifTemplate.compile(this.template, map, options);
   }
 
+  // TODO: compile should accept arrays of data and replace $0 $1 $2, ... 
   static compile(template, data, options) {
     return template.replace(
       /([{}])\1|[{](.*?)(?:!(.+?))?[}]/g,
