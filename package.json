@@ -1,6 +1,6 @@
 {
   "name": "strif",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Format strings easily",
   "main": "strif.js",
   "scripts": {
