@@ -71,6 +71,10 @@ class StrifTemplate {
           transformers[key].ignore = true;
         }
       });
+    } else {
+      Object.keys(this._transformers).forEach(key => {
+        transformers[key].ignore = false;
+      });
     }
 
     let map = data;
