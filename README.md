@@ -1,6 +1,3 @@
-
-
-
 <!-- Links -->
 [npm-image]: https://img.shields.io/npm/v/strif.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/strif
@@ -17,6 +14,8 @@
 [vulnerabilities-badge]: https://snyk.io/test/npm/strif/badge.svg?style=flat-square
 [vulnerabilities-link]: https://snyk.io/test/npm/strif
 
+<div align="center">
+
 # :card_index: strif <!-- omit in toc -->
 
 [![NPM version][npm-image]][npm-url]
@@ -26,7 +25,8 @@
 [![Known Vulnerabilities][vulnerabilities-badge]][vulnerabilities-link]
 [![NPM quality][code-quality-badge]][code-quality-link]
 
-Format strings easily 
+<p>Format strings easily</p>
+</div>
 
 ## Features <!-- omit in toc -->
 * ✔︎ Simple
@@ -34,6 +34,25 @@ Format strings easily
 * ✔︎ Type Checking
 * ✔︎ No Dependencies
 
+## Table Of Content <!-- omit in toc -->
+- [Overview](#overview)
+- [Installation](#installation)
+- [Importing](#importing)
+- [Usage](#usage)
+  - [Using in Node](#using-in-node)
+  - [Using in Browser](#using-in-browser)
+- [Api](#api)
+  - [strif](#strif)
+    - [strif.Formatter](#strifformatter)
+    - [strif.Template](#striftemplate)
+    - [strif.Prop](#strifprop)
+    - [strif.PropOptions](#strifpropoptions)
+    - [strif.TemplateOptions](#striftemplateoptions)
+    - [strif.FormatterOptions](#strifformatteroptions)
+  - [Transformers](#transformers)
+  - [Plugins](#plugins)
+- [Found a bug or have a feature request](#found-a-bug-or-have-a-feature-request)
+- [Contributing](#contributing)
 
 ## Overview
 ```js
@@ -59,26 +78,6 @@ const template =
 
 console.log(template.compile(data));
 ```
-
-## Table Of Content <!-- omit in toc -->
-- [Overview](#overview)
-- [Installation](#installation)
-- [Importing](#importing)
-- [Usage](#usage)
-  - [Using in Node](#using-in-node)
-  - [Using in Browser](#using-in-browser)
-- [Api](#api)
-  - [strif](#strif)
-    - [strif.Formatter](#strifformatter)
-    - [strif.Template](#striftemplate)
-    - [strif.Prop](#strifprop)
-    - [strif.PropOptions](#strifpropoptions)
-    - [strif.TemplateOptions](#striftemplateoptions)
-    - [strif.FormatterOptions](#strifformatteroptions)
-  - [Transformers](#transformers)
-  - [Plugins](#plugins)
-- [Found a bug or have a feature request](#found-a-bug-or-have-a-feature-request)
-- [Contributing](#contributing)
 
 ## Installation
 Install from npm:
