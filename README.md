@@ -23,7 +23,6 @@
 [![](https://img.shields.io/bundlephobia/min/strif.svg?style=flat-square)]()  
 [![Dependencies][dependencies-badge]][dependencies-link]
 [![Known Vulnerabilities][vulnerabilities-badge]][vulnerabilities-link]
-[![NPM quality][code-quality-badge]][code-quality-link]
 
 <p>Format strings easily</p>
 </div>
