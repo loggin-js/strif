@@ -28,6 +28,8 @@
 <p>Format strings easily</p>
 </div>
 
+****
+
 ## Features <!-- omit in toc -->
 * ✔︎ Simple
 * ✔︎ Expandable/Configurable
@@ -209,7 +211,7 @@ interface strif.FormatterOptions {
 ```
 
 ### Transformers
-Transformers are **functions** that are be used to process some segment of the template,  
+Transformers are **functions** that are used to process some segment of the template,  
 they will **receive a value** and they **must** also **return a value**, here are some example:
 ```js
 {
