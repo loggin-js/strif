@@ -1,12 +1,13 @@
 {
   "name": "strif",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Format strings easily",
   "main": "strif.js",
   "scripts": {
     "dist": "browserify strif.js -o dist/strif.dist.js",
     "test": "jest",
-    "test:w": "jest --watchAll"
+    "test:w": "jest --watchAll",
+    "release": "standard-version"
   },
   "repository": {
     "type": "vcs",
@@ -25,6 +26,7 @@
   ],
   "devDependencies": {
     "browserify": "^16.2.3",
-    "jest": "^24.1.0"
+    "jest": "^24.1.0",
+    "standard-version": "^7.0.1"
   }
 }
