@@ -1,3 +1,6 @@
 const strif = require('../strif');
+let result = strif.compile('Hi {name}!', {
+    name: 'John'
+});
 
-strif.compile('', {});
+console.log('result', result);

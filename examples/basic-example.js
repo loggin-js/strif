@@ -8,12 +8,13 @@ let formatter = strif.create({
     }
 });
 
-let template = formatter.template(`{date} - {message}`, {
+let template = formatter.template(`Hi {name}!`, {
     props: {
-        date: { transformers: [`date`, `lds`] },
-        message: { transformers: [`upper`] }
+        name: {},
     }
 });
 
-let result = template.compile({ date: '10-10-2019', message: 'Hey there!' });
+let result = template.compile({
+    name: 'John'
+});
 console.log('result', result);
