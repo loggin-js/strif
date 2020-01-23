@@ -67,6 +67,7 @@ class StrifTemplate {
       ...StrifTemplate.DefaultCompileOptions,
       ...options
     }
+    const dataClone = { ...data };
 
     let transformers = this._transformers;
     if (options.ignoreTransformers) {
@@ -83,17 +84,22 @@ class StrifTemplate {
       });
     }
 
-    let map = data;
+    let map = dataClone;
     for (let prop of this._props) {
-      let propData = prop.getFromObject(data);
+      let propData = prop.getFromObject(dataClone);
       if (propData) {
         map[prop.name] = propData;
       }
       if (prop.transformers) {
         map[prop.name] = prop.transformers
           .reduce((prev, curr) => {
-            if (!transformers[curr]) {
-              throw new Error('Transformer not found: ' + curr);
+            const isFn = typeof curr === 'function';
+            const isTransformer = isFn || transformers[curr] != undefined;
+
+            if (!isTransformer) {
+              throw new Error('Transformer not found and is not a function: ' + curr);
+            } else if (isFn) {
+              return curr(prev);
             } else if (transformers[curr].ignore) {
               return prev;
             } else {
@@ -186,7 +192,10 @@ StrifFormatter.DEFAULT_TRANSFORMERS = {};
 const DEFAULT_FORMATTER_OPTS = {
   transformers: {
     date: s => new Date(s),
-    lds: d => d.toLocaleString()
+    lds: d => d.toLocaleString(),
+    capitalize: s => {
+      return s && s[0].toUpperCase() + s.slice(1);
+    }
   }
 };
 

@@ -1,5 +1,7 @@
 const strif = require('../strif');
 
+strif.template();
+
 let formatter = strif.create({
     transformers: {
         date: s => new Date(s),

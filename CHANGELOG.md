@@ -6,5 +6,5 @@ All notable changes to this project will be documented in this file. See [standa
 
 
 ### Bug Fixes
-
-* compile not working properly, and added checksfor browser ([5064871](https://github.com/nombrekeff/strif/commit/506487120a8428d1b59ff61192db57aae36866df))
+* `StrifFormatter.Compile` not working properly ([5064871](https://github.com/nombrekeff/strif/commit/506487120a8428d1b59ff61192db57aae36866df))
+* Bufixes
