@@ -7,7 +7,7 @@ const template = strif
             time: { transformers: [`date`, `lds`] },
 
             // `user` does not use any transformers, but it specifies the dot notation path to the data ('user.name')
-            user: { transformers: [], accessor: 'user.name' },
+            user: { transformers: [(c) => c.toUpperCase()], accessor: 'user.name' },
         }
     })
     // props can be defined after creating the template, and can also define a type

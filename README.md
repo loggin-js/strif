@@ -183,8 +183,9 @@ const template = strif
       // `time` will be treated as a date, and apply the "lds" (toLocaleString) transformer
       time: { transformers: [`date`, `lds`] },
 
-      // `user` does not use any transformers, but it specifies the dot notation path to the data ('user.name')
-      user: { transformers: [], accessor: 'user.name' },
+      // `user` specifies the dot notation path to the data ('user.name')
+      // transformers can also be functions 
+      user: { transformers: [(c) => c.toUpperCase()], accessor: 'user.name' },
     }
   })
   // props can be defined after creating the template, and can also define a type

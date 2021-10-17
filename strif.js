@@ -23,6 +23,10 @@ class StrifVar {
     this.opts = opts;
   }
 
+  hasTransformers() {
+    return this.transformers && this.transformers.length > 0;
+  }
+
   getFromObject(obj) {
     let str = this.accessor.replace(/\[(\w+)\]/g, '.$1').replace(/^\./, '');
     for (let k of str.split('.')) {
@@ -68,10 +72,14 @@ class StrifTemplate {
       ...StrifTemplate.DefaultCompileOptions,
       ...options
     }
+
+    // TODO: Check and see if cloning is necessary here
     const dataClone = { ...data };
 
     let transformers = this._transformers;
 
+    // TODO: Look for better/more performant way of checking this
+    // Maybe check on reduce instead
     if (options.ignoreTransformers) {
       transformers = {};
       Object.keys(this._transformers).forEach(key => {
@@ -87,6 +95,7 @@ class StrifTemplate {
     }
 
     let map = dataClone;
+
     for (let prop of this._props) {
       let propData = prop.getFromObject(dataClone);
 
@@ -94,7 +103,7 @@ class StrifTemplate {
         map[prop.name] = propData;
       }
 
-      if (prop.transformers) {
+      if (prop.hasTransformers()) {
         map[prop.name] = prop.transformers
           .reduce((prev, curr) => {
             const isFn = typeof curr === 'function';
@@ -104,22 +113,22 @@ class StrifTemplate {
               throw new Error('Transformer not found and is not a function: ' + curr);
             }
 
-            
+            if (isFn) return curr(prev);
+
             if (transformers[curr].ignore) {
               return prev;
             }
-
-            if (isFn) return curr(prev);
 
             return transformers[curr](prev);
           }, map[prop.name]);
       }
     }
-    
+
     return StrifTemplate.compile(this.template, map, options);
   }
 
   static compile(template, data, options) {
+    // TODO: memoize/cache?
     return template.replace(
       /([{}])\1|[{](.*?)(?:!(.+?))?[}]/g,
       (m, l, key) => {
