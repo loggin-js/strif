@@ -45,7 +45,8 @@ For example:
 
 ## Table Of Content <!-- omit in toc -->
 - [Introduction](#introduction)
-- [Overview](#overview)
+- [Examples](#examples)
+  - [Fill slug with data](#fill-slug-with-data)
 - [Installation](#installation)
 - [Importing](#importing)
 - [Usage](#usage)
@@ -64,38 +65,49 @@ For example:
 - [Found a bug or have a feature request](#found-a-bug-or-have-a-feature-request)
 - [Contributing](#contributing)
 
-## Overview
-I think looking at at example will help understand what strif does better than words:
+## Examples
+I think looking at an example will help understand what strif does better than words:
+
+### Fill slug with data
 
 ```js
-const formatter = strif.create({
-  transformers: {
-    date: s => new Date(s),
-    lds:  d => d.toLocaleString()
-  }
-});
+const githubRepoLink = strif
+  .template('https://github.com/{owner}/{repo}')
+  .compile({ owner: 'loggin-js', repo: 'strif' });
 
-const template =
-  formatter
-    .template('{time} {user} {message}', {
-      props: {
-        time: { transformers: [`date`, `lds`] },
-        user: { transformers: [], accessor: 'user.name' },
-      }
-    })
-    .prop('message', { type: 'string' });
+console.log(githubRepoLink);
+```
 
-const data = {
+The above example would output the following:
+![](./.github/media/slug.png)
+
+
+### Formatting a log message
+```js
+const template = strif
+  .template('[{time}] {user} - {message}', {
+    props: {
+      // `time` will be treated as a date, and apply the "lds" (toLocaleString) transformer
+      time: { transformers: [`date`, `lds`] },
+
+      // `user` does not use any transformers, but it specifies the dot notation path to the data ('user.name')
+      user: { transformers: [], accessor: 'user.name' },
+    }
+  })
+  // props can be defined after creating the template, and can also define a type
+  .prop('message', { type: 'string' });
+
+// If we want to apply data to the template, we do it by using the `compile()` method
+const logMessage = template.compile({
   time: Date.now(),
   user: { name: 'Manolo' },
   message: 'This is the message',
-};
-
-console.log(template.compile(data));
+});
 ```
 
 The above example would output the following:
 ![](./.github/media/example-overview.png)
+
 
 ## Installation
 Install from npm:
@@ -122,14 +134,18 @@ In the browser:
 
 ## Usage
 ### Using in Node
-Using **strif** is actually pretty easy, you can use the default formatter under **strif**
+Using **strif** is actually pretty easy, you can use the default formatter under **strif**. This formatter contains a set of predefined formatters (_if you want to add you custom formatters, see the next point_)
+
 ```js
 let template = strif.template('{time} {user} {message}');
 template.compile(data);
+
 // Or
 strif.compile('{time} {user} {message}', data);
 ```
-or create a custom one by using `strif.create(opts)`, you can pass a set of [transformers](#transformers) and [plugins](#plugins) and other [options](#strifformatteroptions)
+
+or create a custom one by using `strif.create(opts)`, you can pass a set of [transformers](#transformers), [plugins](#plugins) and other [options](#strifformatteroptions)
+
 ```js
 const formatter = strif.create({
   transformers: {
@@ -151,7 +167,6 @@ let formatterString =
 
 console.log(formatterString);
 ```
-
 
 ### Using in Browser
 Using **strif** in the browser is as simple as in node, just import the script `strif/dist/strif.dist.js`
