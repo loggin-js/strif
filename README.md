@@ -49,7 +49,7 @@ const githubRepoLink = strif
 
 console.log(githubRepoLink);
 ```
-The above example would output the following:
+The above example would output the following:  
 ![](./.github/media/slug.png)
 
 ## Table Of Content <!-- omit in toc -->
