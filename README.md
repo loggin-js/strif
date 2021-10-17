@@ -32,7 +32,7 @@
 * ✔︎ No Dependencies
 
 ## Introduction
-**Strif** was initially created for one of my other libraries [Loggin'JS](https://github.com/loggin-js/loggin-js) which needed some features I could not find in other libraries and decided to do it myself.
+**Strif** was initially created for one of my other libraries [Loggin'JS](https://github.com/loggin-js/loggin-js/blob/master/src/lib/formatter.js) which needed some features I could not find in other libraries and decided to do it myself. 
 
 What I needed was to be able to **process a string in segments**, and apply some **format** to each segment, with the option to **enable/disable** which parts are formatted and which parts are not. 
 
