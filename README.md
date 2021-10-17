@@ -24,7 +24,7 @@
 [![Dependencies][dependencies-badge]][dependencies-link]
 [![Known Vulnerabilities][vulnerabilities-badge]][vulnerabilities-link]
 
-<p>Format strings easily</p>
+<p>Utility for interpolating strings from a template with some data.</p>
 </div>
 
 ****
@@ -36,22 +36,15 @@
 * ✔︎ No Dependencies
 
 ## Introduction
-First of all thanks for checking this project out! **Strif** was initially created for one of my other libraries [Loggin'JS]() which needed some features I could not find in other libraries and decided to do it myself.
+**Strif** was initially created for one of my other libraries [Loggin'JS]() which needed some features I could not find in other libraries and decided to do it myself.
 
-What I needed was to be able to **process a string in segments**, and apply some **format** to them, with the option to **enable/disable** which parts are formatted and which parts are not. For example:
-* In Loggin'JS if **color is enabled** in the logger, I want to **apply** the **color format**.
+What I needed was to be able to **process a string in segments**, and apply some **format** to each segment, with the option to **enable/disable** which parts are formatted and which parts are not. 
 
-
-## Some Usecases
-Here are some usecases that strif could work for:
-* Dinamic formating
-* User inputed data
-* Internationalization
-
-
-
+For example:
+* Formating a log message, where some part need to be colored, some need to be converted to a specific date format. Etc... 
 
 ## Table Of Content <!-- omit in toc -->
+- [Introduction](#introduction)
 - [Overview](#overview)
 - [Installation](#installation)
 - [Importing](#importing)
@@ -72,29 +65,37 @@ Here are some usecases that strif could work for:
 - [Contributing](#contributing)
 
 ## Overview
+I think looking at at example will help understand what strif does better than words:
+
 ```js
 const formatter = strif.create({
   transformers: {
     date: s => new Date(s),
     lds:  d => d.toLocaleString()
-  },
-  plugins: [
-    '.tests/plugins/strif-color.js'
-  ]
+  }
 });
 
 const template =
   formatter
     .template('{time} {user} {message}', {
       props: {
-        time: { transformers: [`date`, `lds`, `blue`]                        },
-        user: { transformers: [`gray`],               accessor: 'user.name'  },
+        time: { transformers: [`date`, `lds`] },
+        user: { transformers: [], accessor: 'user.name' },
       }
     })
     .prop('message', { type: 'string' });
 
+const data = {
+  time: Date.now(),
+  user: { name: 'Manolo' },
+  message: 'This is the message',
+};
+
 console.log(template.compile(data));
 ```
+
+The above example would output the following:
+![](./.github/media/example-overview.png)
 
 ## Installation
 Install from npm:
@@ -141,12 +142,17 @@ let template = formatter
   .template('{time} {user} {message}')
   .prop('time', { transformers: [`date`] });
 
-template.compile({
-  time: 11223322,
-  message: 'This is a super long message ',
-  user: { name: 'Bob' }
-});
+let formatterString = 
+  template.compile({
+    time: 11223322,
+    message: 'This is a super long message ',
+    user: { name: 'Bob' }
+  });
+
+console.log(formatterString);
 ```
+
+
 ### Using in Browser
 Using **strif** in the browser is as simple as in node, just import the script `strif/dist/strif.dist.js`
 ```html

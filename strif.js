@@ -36,6 +36,7 @@ class StrifVar {
     return obj;
   }
 }
+
 class StrifTemplate {
   constructor(template, transformers, options = {}) {
     if (!template) {
@@ -87,9 +88,11 @@ class StrifTemplate {
     let map = dataClone;
     for (let prop of this._props) {
       let propData = prop.getFromObject(dataClone);
+
       if (propData) {
         map[prop.name] = propData;
       }
+
       if (prop.transformers) {
         map[prop.name] = prop.transformers
           .reduce((prev, curr) => {
@@ -98,13 +101,15 @@ class StrifTemplate {
 
             if (!isTransformer) {
               throw new Error('Transformer not found and is not a function: ' + curr);
-            } else if (isFn) {
-              return curr(prev);
-            } else if (transformers[curr].ignore) {
-              return prev;
-            } else {
-              return transformers[curr](prev);
             }
+
+            if (isFn) return curr(prev);
+
+            if (transformers[curr].ignore) {
+              return prev;
+            }
+
+            return transformers[curr](prev);
           }, map[prop.name]);
       }
     }
@@ -118,7 +123,9 @@ class StrifTemplate {
         if (key || l) {
           let val = data[key || l] || '';
           return val;
-        } else return data;
+        }
+
+        return data;
       });
   }
 }
