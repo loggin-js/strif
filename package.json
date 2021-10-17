@@ -28,5 +28,8 @@
     "browserify": "^16.2.3",
     "jest": "^24.1.0",
     "standard-version": "^7.0.1"
+  },
+  "dependencies": {
+    "benchmark": "^2.1.4"
   }
 }

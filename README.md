@@ -41,17 +41,31 @@
 What I needed was to be able to **process a string in segments**, and apply some **format** to each segment, with the option to **enable/disable** which parts are formatted and which parts are not. 
 
 For example:
-* Formating a log message, where some part need to be colored, some need to be converted to a specific date format. Etc... 
+* Formating log messages, where some part need to be colored, some need to be converted to a specific date format. Etc... 
+* Filling in a string with any data
+
+Most simple example, so you get an idea:
+
+```js
+const githubRepoLink = strif
+  .template('https://github.com/{owner}/{repo}')
+  .compile({ owner: 'loggin-js', repo: 'strif' });
+
+console.log(githubRepoLink);
+```
+The above example would output the following:
+![](./.github/media/slug.png)
 
 ## Table Of Content <!-- omit in toc -->
 - [Introduction](#introduction)
-- [Examples](#examples)
-  - [Fill slug with data](#fill-slug-with-data)
 - [Installation](#installation)
 - [Importing](#importing)
 - [Usage](#usage)
   - [Using in Node](#using-in-node)
   - [Using in Browser](#using-in-browser)
+- [Examples](#examples)
+  - [Fill slug with data](#fill-slug-with-data)
+  - [Formatting a log message](#formatting-a-log-message)
 - [Api](#api)
   - [strif](#strif)
     - [strif.Formatter](#strifformatter)
@@ -64,50 +78,6 @@ For example:
   - [Plugins](#plugins)
 - [Found a bug or have a feature request](#found-a-bug-or-have-a-feature-request)
 - [Contributing](#contributing)
-
-## Examples
-I think looking at an example will help understand what strif does better than words:
-
-### Fill slug with data
-
-```js
-const githubRepoLink = strif
-  .template('https://github.com/{owner}/{repo}')
-  .compile({ owner: 'loggin-js', repo: 'strif' });
-
-console.log(githubRepoLink);
-```
-
-The above example would output the following:
-![](./.github/media/slug.png)
-
-
-### Formatting a log message
-```js
-const template = strif
-  .template('[{time}] {user} - {message}', {
-    props: {
-      // `time` will be treated as a date, and apply the "lds" (toLocaleString) transformer
-      time: { transformers: [`date`, `lds`] },
-
-      // `user` does not use any transformers, but it specifies the dot notation path to the data ('user.name')
-      user: { transformers: [], accessor: 'user.name' },
-    }
-  })
-  // props can be defined after creating the template, and can also define a type
-  .prop('message', { type: 'string' });
-
-// If we want to apply data to the template, we do it by using the `compile()` method
-const logMessage = template.compile({
-  time: Date.now(),
-  user: { name: 'Manolo' },
-  message: 'This is the message',
-});
-```
-
-The above example would output the following:
-![](./.github/media/example-overview.png)
-
 
 ## Installation
 Install from npm:
@@ -183,6 +153,53 @@ Using **strif** in the browser is as simple as in node, just import the script `
 </html>
 ```
 > ! NOTICE: Plugins currently don't work in browser, woking on it. PRs Welcome
+
+
+
+
+
+## Examples
+I think looking at an example will help understand what strif does better than words:
+
+### Fill slug with data
+
+```js
+const githubRepoLink = strif
+  .template('https://github.com/{owner}/{repo}')
+  .compile({ owner: 'loggin-js', repo: 'strif' });
+
+console.log(githubRepoLink);
+```
+
+The above example would output the following:
+![](./.github/media/slug.png)
+
+
+### Formatting a log message
+```js
+const template = strif
+  .template('[{time}] {user} - {message}', {
+    props: {
+      // `time` will be treated as a date, and apply the "lds" (toLocaleString) transformer
+      time: { transformers: [`date`, `lds`] },
+
+      // `user` does not use any transformers, but it specifies the dot notation path to the data ('user.name')
+      user: { transformers: [], accessor: 'user.name' },
+    }
+  })
+  // props can be defined after creating the template, and can also define a type
+  .prop('message', { type: 'string' });
+
+// If we want to apply data to the template, we do it by using the `compile()` method
+const logMessage = template.compile({
+  time: Date.now(),
+  user: { name: 'Manolo' },
+  message: 'This is the message',
+});
+```
+
+The above example would output the following:
+![](./.github/media/example-overview.png)
 
 
 ## Api

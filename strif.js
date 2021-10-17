@@ -71,6 +71,7 @@ class StrifTemplate {
     const dataClone = { ...data };
 
     let transformers = this._transformers;
+
     if (options.ignoreTransformers) {
       transformers = {};
       Object.keys(this._transformers).forEach(key => {
@@ -103,16 +104,18 @@ class StrifTemplate {
               throw new Error('Transformer not found and is not a function: ' + curr);
             }
 
-            if (isFn) return curr(prev);
-
+            
             if (transformers[curr].ignore) {
               return prev;
             }
+
+            if (isFn) return curr(prev);
 
             return transformers[curr](prev);
           }, map[prop.name]);
       }
     }
+    
     return StrifTemplate.compile(this.template, map, options);
   }
 
