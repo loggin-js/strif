@@ -177,6 +177,20 @@ class StrifFormatter {
     }
   }
 
+  addTransformer(name, transformer) {
+    if (typeof name != 'string') {
+      throw new Error('name is required to be a string');
+    }
+
+    if (typeof transformer != 'function') {
+      throw new Error('transformer is required to be a function');
+    }
+
+    this.transformers[name] = transformer;
+
+    return this;
+  }
+
   /**
    * @param {string} template 
    * @param {object} options 

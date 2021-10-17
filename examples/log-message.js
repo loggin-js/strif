@@ -1,4 +1,5 @@
 const strif = require('../strif');
+strif.addTransformer('test', (s) => s);
 
 const template = strif
     .template('[{time}] {user} - {message}', {
