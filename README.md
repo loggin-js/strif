@@ -8,9 +8,6 @@
 [downloads-badge]: https://img.shields.io/npm/dm/strif.svg?style=flat-square
 [downloads-link]: https://www.npmjs.com/package/strif
 
-[dependencies-badge]: https://img.shields.io/david/nombrekeff/strif.svg?style=flat-square
-[dependencies-link]: https://david-dm.org/nombrekeff/strif?view=tree
-
 [vulnerabilities-badge]: https://snyk.io/test/npm/strif/badge.svg?style=flat-square
 [vulnerabilities-link]: https://snyk.io/test/npm/strif
 
@@ -20,8 +17,7 @@
 
 [![NPM version][npm-image]][npm-url]
 [![Downloads][downloads-badge]][downloads-link]
-[![](https://img.shields.io/bundlephobia/min/strif.svg?style=flat-square)]()  
-[![Dependencies][dependencies-badge]][dependencies-link]
+[![](https://img.shields.io/bundlephobia/min/strif.svg?style=flat-square)]()
 [![Known Vulnerabilities][vulnerabilities-badge]][vulnerabilities-link]
 
 <p>Utility for interpolating strings from a template with some data.</p>
@@ -53,7 +49,7 @@ const githubRepoLink = strif
 
 console.log(githubRepoLink);
 ```
-The above example would output the following:
+The above example would output the following:  
 ![](./.github/media/slug.png)
 
 ## Table Of Content <!-- omit in toc -->
