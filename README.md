@@ -347,7 +347,7 @@ format(data2, true); // > bob has 2 messages
 **After:**  
 Strif offers a set of default [**transformers**]() that you can apply to a specific value, which internally we call **prop**. 
 
-You can additionally create your own transformers, see [this](#Custom-formatter).
+You can additionally create your own transformers, see [this](#transformers).
 ```js
 const format = strif
   .template('{name} has {messageCount} messages')
