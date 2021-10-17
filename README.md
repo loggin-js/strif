@@ -32,7 +32,7 @@
 * ✔︎ No Dependencies
 
 ## Introduction
-**Strif** was initially created for one of my other libraries [Loggin'JS]() which needed some features I could not find in other libraries and decided to do it myself.
+**Strif** was initially created for one of my other libraries [Loggin'JS](https://github.com/loggin-js/loggin-js) which needed some features I could not find in other libraries and decided to do it myself.
 
 What I needed was to be able to **process a string in segments**, and apply some **format** to each segment, with the option to **enable/disable** which parts are formatted and which parts are not. 
 
@@ -96,6 +96,7 @@ In the browser:
 
 ## Usage
 ### Using in Node
+
 Using **strif** is actually pretty easy, you can use the default formatter under **strif**. This formatter contains a set of predefined formatters (_if you want to add you custom formatters, see the next point_)
 
 ```js
@@ -124,7 +125,7 @@ let formatterString =
   template.compile({
     time: 11223322,
     message: 'This is a super long message ',
-    user: { name: 'Bob' }
+    user: 'Bob'
   });
 
 console.log(formatterString);
